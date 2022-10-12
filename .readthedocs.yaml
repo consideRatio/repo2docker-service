@@ -1,0 +1,25 @@
+# Configuration on how ReadTheDocs (RTD) builds our documentation
+# ref: https://readthedocs.org/projects/repo2docker-service/
+# ref: https://docs.readthedocs.io/en/stable/config-file/v2.html
+#
+version: 2
+
+sphinx:
+  configuration: docs/source/conf.py
+
+build:
+  os: ubuntu-22.04
+  tools:
+    python: "3.11"
+
+  # We want to install the package itself as autodoc_traits needs it. However,
+  # we want to avoid building the frontend application as that requires node to
+  # be installed.
+  #
+  # To provide the environment variable HATCH_BUILD_NO_HOOKS=1 and disable
+  # building the frontend application, we need to use "build.jobs" instead of
+  # "python.install".
+  #
+  jobs:
+    post_install:
+      - HATCH_BUILD_NO_HOOKS=1 pip install ".[doc]"

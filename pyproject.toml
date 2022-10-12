@@ -1,0 +1,170 @@
+# project
+# - ref 1: https://peps.python.org/pep-0621/
+# - ref 2: https://hatch.pypa.io/latest/config/metadata/#project-metadata
+#
+[project]
+name = "repo2docker-service"
+description = "Enables JupyterHub users to run repo2docker"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {file = "LICENSE"}
+keywords = ["repo2docker", "jupyterhub"]
+authors = [
+    {name = "Erik Sundell", email = "erik@sundelleopensource.se"},
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Programming Language :: Python :: Implementation :: PyPy",
+]
+dependencies = [
+    "aiodocker",
+    "fastapi",
+    "pydantic",
+    "traitlets",
+]
+dynamic = ["version"]
+
+[project.optional-dependencies]
+dev = [
+    "pre-commit",
+    "uvicorn[standard]",
+]
+doc = [
+    "autodoc_traits",
+    "myst-parser",
+    "sphinx-autobuild",
+    "sphinx-book-theme",
+    "sphinx-copybutton",
+    "sphinxext-opengraph",
+    "sphinxext-rediraffe",
+]
+test = [
+    "pytest-asyncio",
+    "pytest",
+    # requests is used by TestClient, provided by starlette via fastapi
+    "requests",
+]
+
+[project.urls]
+Documentation = "https://github.com/consideratio/repo2docker-service#readme"
+Issues = "https://github.com/consideratio/repo2docker-service/issues"
+Source = "https://github.com/consideratio/repo2docker-service"
+
+[project.entry-points."repo2docker_service.builders"]
+mocked = "repo2docker_service.builders.mocked:MockedBuilder"
+dind = "repo2docker_service.builders.dind:DindBuilder"
+
+
+# build-system
+# - ref 1: https://peps.python.org/pep-0517/
+#
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+# hatch ref: https://hatch.pypa.io/latest/
+#
+[tool.hatch.version]
+path = "repo2docker_service/_version.py"
+
+[tool.hatch.build.targets.sdist]
+exclude = [
+  ".github",
+  ".gitignore",
+  ".pre-commit-config.yaml",
+  ".readthedocs.yaml",
+  "/docs",
+  "/repo2docker_service/frontend/build",
+  "/repo2docker_service/frontend/node_modules",
+  "/repo2docker_service/frontend/src/__tests__",
+  "/tests",
+  "RELEASE.md",
+]
+
+[tool.hatch.build.targets.wheel]
+exclude = [
+  ".github",
+  ".gitignore",
+  ".pre-commit-config.yaml",
+  ".readthedocs.yaml",
+  "/docs",
+  "/repo2docker_service/frontend/node_modules",
+  "/repo2docker_service/frontend/src/__tests__",
+  "/tests",
+  "RELEASE.md",
+]
+
+# hatch-jupyter-builder provides the npm_builder that we rely on to build our
+# frontend source code into static assets.
+# 
+# ref: https://github.com/jupyterlab/hatch-jupyter-builder#readme
+#
+[tool.hatch.build.hooks.jupyter-builder]
+dependencies = ["hatch-jupyter-builder"]
+build-function = "hatch_jupyter_builder.npm_builder"
+
+# npm_builder ref: https://github.com/jupyterlab/hatch-jupyter-builder/blob/c33c3ae7ff4ee4261a067eb11896a4f4644fabef/hatch_jupyter_builder/utils.py#L32-L69
+#
+[tool.hatch.build.hooks.jupyter-builder.build-kwargs]
+path = "repo2docker_service/frontend"
+
+
+# black is used for autoformatting Python code
+#
+# ref: https://black.readthedocs.io/en/stable/
+#
+[tool.black]
+target_version = [
+    "py310",
+    "py311",
+]
+
+
+# isort is used for autoformatting Python code
+#
+# ref: https://pycqa.github.io/isort/
+#
+[tool.isort]
+profile = "black"
+
+
+# pytest is used for running Python based tests
+#
+# ref: https://docs.pytest.org/en/stable/
+#
+[tool.pytest.ini_options]
+addopts = "--verbose --color=yes --durations=10"
+asyncio_mode = "auto"
+
+
+# tbump is used to simplify and standardize the release process when updating
+# the version, making a git commit and tag, and pushing changes.
+#
+# ref: https://github.com/your-tools/tbump#readme
+#
+[tool.tbump]
+github_url = "https://github.com/consideratio/repo2docker-service"
+
+[tool.tbump.version]
+current = "0.0.1.dev0"
+regex = '''
+    (?P<major>\d+)
+    \.
+    (?P<minor>\d+)
+    \.
+    (?P<patch>\d+)
+    (?P<pre>((a|b|rc)\d+)|)
+    \.?
+    (?P<dev>(?<=\.)dev\d*|)
+'''
+
+[tool.tbump.git]
+message_template = "Bump to {new_version}"
+tag_template = "{new_version}"
+
+[[tool.tbump.file]]
+src = "repo2docker_service/_version.py"
