@@ -7,33 +7,23 @@ Scope:
 
 `docs/`
 
-- DONE: bootstrap myst
-
 `library/builder/`
-
-- DONE: Add DindBuilder
 
 `library/registry/`
 
 - **NEXT**: Add DockerDaemonRegistry
-- Add DockerRegistry
+- **NEXT**: Add DockerRegistry
 
 `frontend/`
 
-- DONE: Initialize a frontend application
-  - DONE: React
-  - DONE: Webpack
-  - DONE: Babel
-  - DONE: Jest
-  - DONE: Chakra-ui
+-
 
 `app/`
 
+- **NEXT**: Re-evaluate REST API structure acknowledging image_name will need URL escaping etc
 - **NEXT**: Define REST API relying on `MockedRegistry`
-- DONE: Define REST API relying on `MockedBuilder`
-- DONE: OpenAPI documentation
-  - DONE: Bootstrap it
-  - DONE: Add whats needed for it to reflect our REST API
+- Serve built frontend
+  - Test serving of built frontend from wheel
 - Add configuration system based on traitlets
   - Allow configuration of builder
 - Add authentication against JupyterHub, look at:
@@ -45,6 +35,10 @@ Python packaging:
 
 - Figure out what to include in the source manifest and how to declare that.
 - Figure out what to include in the wheel and how to declare that.
+
+Upstream in `repo2docker`
+
+- Misc maintenance PRs
 
 # tljh-repo2docker overview
 

@@ -1,11 +1,27 @@
 # A FastAPI web application
 
-This application is to expose a REST API under `/api/v1`, where it relies on a
-configured Builder and Registry class for its actions. It is also meant to
-expose a primitive frontend UI to use the REST API under `/`.
+This [FastAPI][] based web application provides a REST API under `/api/v1`. The
+REST API is wrapping a configured [BaseBuilder][] and [BaseRegistry][] class'
+functions.
+
+A UI to use the REST API is provided under `/`, which is maintained in the
+[frontend][] folder.
+
+## Development notes
+
+To run the application, use [uvicorn][] like below from the root directory of
+this git project.
+
+```shell
+uvicorn repo2docker_service.app.main:app
+```
 
 ## References
 
 - Code structure based on [FastAPI's suggested structure][].
 
+[builder]: ../library/builder/
 [fastapi's suggested structure]: https://fastapi.tiangolo.com/tutorial/bigger-applications/
+[frontend]: ../frontend/
+[registry]: ../library/registry/
+[uvicorn]: https://www.uvicorn.org/

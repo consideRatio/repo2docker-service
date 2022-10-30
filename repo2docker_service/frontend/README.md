@@ -1,10 +1,19 @@
-# Getting Started with Create React App
+# A React based UI
 
-This project was bootstrapped with [_Create React App_][].
+This frontend project provides repo2docker-service with a basic UI to consume
+its REST API.
 
-## Available Scripts
+The tool [Create React App][] bootstrapped this project, and now its
+[`react-scripts`][] is used to develop, test, and build the static frontend
+application (.html, .js, .css). With `react-scripts` we are indirectly provided
+with common tooling like [Webpack][], [Babel][], etc.
 
-In the project directory, you can run:
+We rely on [chakra][] to provide React components to construct our UI.
+
+## Development scripts
+
+After installing [node][] and running `npm install` in this folder, you can run
+the scripts below.
 
 ### `npm start`
 
@@ -16,30 +25,22 @@ the console.
 
 ### `npm test`
 
-Launches the test runner in the interactive watch mode.
+Runs the test runner in the interactive watch mode.
 
-See the documentation about [running tests][] for more information.
+See documentation about [running tests][] for more information.
 
 ### `npm run build`
 
-Builds the app for production to the `build` folder. It correctly bundles React
-in production mode and optimizes the build for the best performance.
+Builds the app for production to the `build` folder. The build is minified and
+the filenames include the hashes.
 
-The build is minified and the filenames include the hashes. Your app is ready to
-be deployed!
+See documentation about [deployment][] for more information.
 
-See the documentation about [deployment][] for more information.
-
-## Learn More
-
-- [_Create React App_ documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-- [_React_ documentation](https://reactjs.org/).
-- [Code Splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-- [Analyzing the Bundle Size](https://facebook.github.io/create-react-app/docs/aalyzing-the-bundle-size)
-- [Making a Progressive Web App](https://facebook.github.io/create-react-app/dcs/making-a-progressive-web-app)
-- [Advanced Configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-- [`npm run build` fails to minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-
-[create react app]: https://github.com/facebook/create-react-app
-[deployment]: https://facebook.github.io/create-react-app/docs/deployment
-[running tests]: https://facebook.github.io/create-react-app/docs/running-tests
+[create react app]: https://create-react-app.dev/docs/getting-started/
+[deployment]: https://create-react-app.dev/docs/deployment/
+[node]: https://nodejs.org/en/
+[running tests]: https://create-react-app.dev/docs/running-tests/
+[react-scripts]: https://github.com/facebook/create-react-app/tree/main/packages/react-scripts
+[babel]: https://babeljs.io/
+[webpack]: https://webpack.js.org/
+[chakra]: https://chakra-ui.com/
