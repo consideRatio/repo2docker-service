@@ -20,8 +20,6 @@ uvicorn repo2docker_service:app --reload
 
 ## References
 
-- Code structure based on [FastAPI's suggested structure][].
-
 [builder]: ../library/builder/
 [fastapi's suggested structure]: https://fastapi.tiangolo.com/tutorial/bigger-applications/
 [frontend]: ../frontend/

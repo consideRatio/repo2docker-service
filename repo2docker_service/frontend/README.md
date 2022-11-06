@@ -1,4 +1,4 @@
-# A React based UI
+# A React + Chakra based frontend UI
 
 This frontend project provides repo2docker-service with a basic UI to consume
 its REST API.
@@ -8,7 +8,7 @@ The tool [Create React App][] bootstrapped this project, and now its
 application (.html, .js, .css). With `react-scripts` we are indirectly provided
 with common tooling like [Webpack][], [Babel][], etc.
 
-We rely on [chakra][] to provide React components to construct our UI.
+We rely on [Chakra][] to provide React components to construct our UI.
 
 ## Development scripts
 
