@@ -32,6 +32,7 @@ considered to help us out:
 
   It can get you a single image manifest, not a full catalog.
 """
+
 from .base import Registry
 
 
