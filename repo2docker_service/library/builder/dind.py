@@ -3,6 +3,7 @@ The DindBuilder relies on a local Docker daemon. It starts a container with
 repo2docker in it and has mounted access to the same Docker daemon. The started
 container then runs repo2docker to build an image.
 """
+
 import json
 
 from aiodocker import Docker
