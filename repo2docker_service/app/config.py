@@ -7,6 +7,7 @@ Open questions:
   or should we use Application as a base class instead somehow?
 - Should we let this code start uvicorn, or should uvicorn start this?
 """
+
 from traitlets.config.configurable import Configurable
 
 from ..library.builder import Builder, MockedBuilder
